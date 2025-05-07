@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.static('.')); 
 
 const pool = mysql.createPool({
-    host: 'switchyard.proxy.rlwy.net',
-    port: 33052,
-    user: 'root',
-    password: 'myksRJYWeuHmzxnnlVniEBzfVlWWLPMC',
-    database: 'railway'
+    host: 'sql.freedb.tech',
+    port: 3306,
+    user: 'freedb_rafael',
+    password: 'e4Csu85uqgk9$yF',
+    database: 'freedb_confeitaria-um-sonho-de-acucar'
 });
 
 app.post('/api/mysql', async (req, res) => {
@@ -24,7 +24,7 @@ app.post('/api/mysql', async (req, res) => {
         case 'cadastro':
             try {
                 var [rows, fields] = await pool.query(
-                    "insert into `railway`.`tbl_clientes` (`nome`, `login`, `senha`) values (?, ?, ?);",
+                    "insert into `freedb_confeitaria-um-sonho-de-acucar`.`tbl_clientes` (`nome`, `login`, `senha`) values (?, ?, ?);",
                     [nome, login, senha]
                 );
                 if (rows.affectedRows > 0) {
@@ -42,7 +42,7 @@ app.post('/api/mysql', async (req, res) => {
         case 'login':
             try {
                 var [rows, fields] = await pool.query(
-                    "select * from `railway`.`tbl_clientes` where `nome` = ? and `login` = ? and `senha` = ?;",
+                    "select * from `freedb_confeitaria-um-sonho-de-acucar`.`tbl_clientes` where `nome` = ? and `login` = ? and `senha` = ?;",
                     [nome, login, senha]
                 );
                 if (rows.length == 1) {
